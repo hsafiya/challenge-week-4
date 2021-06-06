@@ -97,3 +97,29 @@ var questions = [
  var scoreList = document.getElementById('highscore');
  var yourscore = document.getElementById('yourscore');
 // Global Variables End
+
+// Timer Start
+function countdown() {
+    var timeInterval = setInterval(function () {
+        if (timeLeft > 5) {
+            timerEl.textContent = 'Time: ' + timeLeft + ' seconds';
+            timeLeft--;
+        }
+        else if (timeLeft <= 5 && timeLeft > 1) {
+            timerEl.textContent = 'Time: ' + timeLeft + ' seconds';
+            timerEl.style.color = 'red';
+            timeLeft--;
+        }
+        else if (timeLeft === 1) {
+            timerEl.textContent = 'Time: ' + timeLeft + ' second';
+            timeLeft--;
+        }
+        else if (timeLeft === 0) {
+            timerEl.textContent = 'Time up!';
+            clearInterval(timeInterval);
+            alert('Time is up! Let us see how you did.');
+            scoreRender();
+        }
+    }, 1000);
+};
+// Timer End
