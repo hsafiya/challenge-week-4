@@ -66,3 +66,34 @@ var questions = [
         correct: 'D'
     }
 ];
+// Global Variables Start
+
+ // Timer Countdown Function
+ var timerEl = document.getElementById('countdown');
+ var timeLeft = 60;
+
+ //Key Variables
+ var runningQuestion = 0;
+ var score = 0;
+ var scorePercent = 0;
+
+ //Quiz and Questions
+ var question = document.getElementById('question');
+ var choiceA = document.getElementById('A');
+ var choiceB = document.getElementById('B');
+ var choiceC = document.getElementById('C');
+ var choiceD = document.getElementById('D');
+ var answerDisplay = document.getElementById('answer');
+
+ // Start Timer and Quiz
+ var intro = document.getElementById('intro');
+ var quiz = document.getElementById('quiz');
+ var startBtn = document.getElementById('start');
+
+ //Scoring Pages Variables
+ var inpName = document.getElementById('inpName');
+ var scoreboard = document.getElementById('scoreboard');
+ var initials = document.getElementById('initials');
+ var scoreList = document.getElementById('highscore');
+ var yourscore = document.getElementById('yourscore');
+// Global Variables End
