@@ -9,7 +9,6 @@
 * You can check the Highscores anytime by simply click the 'view high scores' button.
 
 ## Links:
-Live Page: https://hsafiya.github.io/challenge-week-4/
-GitHub: https://github.com/hsafiya/challenge-week-4
-
+1. Live Page: https://hsafiya.github.io/challenge-week-4/
+2. GitHub: https://github.com/hsafiya/challenge-week-4             
 ![GitHub Logo](/img/screenshot.png)
