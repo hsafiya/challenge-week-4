@@ -12,4 +12,4 @@
 Live Page: https://hsafiya.github.io/challenge-week-4/
 GitHub: https://github.com/hsafiya/challenge-week-4
 
-![GitHub Logo] (/img/screenshot.png)
+![GitHub Logo](/img/screenshot.png)
