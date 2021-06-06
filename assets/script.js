@@ -66,6 +66,7 @@ var questions = [
         correct: 'D'
     }
 ];
+
 // Global Variables Start
 
  // Timer Countdown Function
@@ -123,6 +124,7 @@ function countdown() {
     }, 1000);
 };
 // Timer End
+
 
 // Display Quiz Questions
 function renderQuestion() {
