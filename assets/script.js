@@ -123,3 +123,27 @@ function countdown() {
     }, 1000);
 };
 // Timer End
+
+// Function to Check Answers and Move onto Next Question
+function checkAnswer(answer) {
+    if (answer == questions[runningQuestion].correct) {
+        score++;
+        scorePercent = Math.round(100 * score / questions.length);
+        answerDisplay.innerHTML = 'Correct! Way to Go!';
+    }
+    else {
+        answerDisplay.innerHTML = 'Wrong! UH OH..';
+        timeLeft = timeLeft - 10;
+    };
+    if (runningQuestion < questions.length - 1) {
+        runningQuestion++;
+        renderQuestion();
+    }
+    else {
+        alert('Congratulations! There is still time left! Lets see your score!');
+        scoreRender();
+        // couldn't figure out how to stop timer here :P
+        timeLeft = 99999999;
+        timerEl.style.display = 'none';
+    }
+};
