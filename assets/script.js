@@ -124,6 +124,18 @@ function countdown() {
 };
 // Timer End
 
+// Display Quiz Questions
+function renderQuestion() {
+    intro.style.display = 'none';
+    quiz.style.display = 'block';
+    var q = questions[runningQuestion];
+    question.innerHTML = q.question;
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
+};
+
 // Function to Check Answers and Move onto Next Question
 function checkAnswer(answer) {
     if (answer == questions[runningQuestion].correct) {
@@ -147,3 +159,98 @@ function checkAnswer(answer) {
         timerEl.style.display = 'none';
     }
 };
+
+// Main Quiz Functionality
+function startQuiz() {
+    countdown();
+    setTimeout(renderQuestion,1000)
+};
+
+startBtn.addEventListener('click', startQuiz);
+
+// Function to Display Score/ End of Quiz
+function scoreRender() {
+    quiz.style.display = 'none';
+    initials.style.display = 'block';
+    yourscore.innerHTML = 'Your final score is ' + scorePercent + '%.';
+};
+
+// Display Scoreboard Page Start
+var highScores = function () {
+
+    // Hide questions and show highscores
+    intro.style.display = 'none';
+    quiz.style.display = 'none';
+    initials.style.display = 'none';
+    scoreboard.style.display = 'block';
+
+    // retrieve highscores from local storage
+    var newScoreArray = localStorage.getItem('highscores');
+
+    // check if there is any highscores stored
+    if (!newScoreArray) {
+        // if not 
+        scoreList.innerHTML = 'There are no scores to show';
+    } else {
+        // if yes, parse it into an array
+        scoreArray = JSON.parse(newScoreArray);
+
+        // iterate thru, create new list element for each object and render it
+        for (let i = 0; i < scoreArray.length; i++) {
+            var newNameSpan = document.createElement("li");
+            newNameSpan.textContent = scoreArray[i].initial + ' - ' + scoreArray[i].score;
+            scoreList.appendChild(newNameSpan);
+        }
+    }
+};
+// Display Scoreboard Page End
+
+// Local Storage for Initials Input Start
+var submit = document.getElementById('submit');
+
+// Submitting and Storing High Scores
+submit.onclick = function () {
+    // initialize the highscore array
+    var initial = inpName.value;
+    var score = scorePercent;
+    var scoreArray = [{ initial, score }];
+
+    // check if initials where typed
+    if (initial) {
+        // check if there is any highscores stored in local storage
+        var newScoreArray = localStorage.getItem('highscores');
+
+        if (!newScoreArray) {
+            // if not, save the first highscore
+            localStorage.setItem('highscores', JSON.stringify(scoreArray));
+        } else {
+            // if yes, parse the local storage, merge the stored highscore array with new array and save it to local storage
+            newScoreArray = JSON.parse(newScoreArray);
+
+            Array.prototype.push.apply(scoreArray, newScoreArray);
+            localStorage.setItem('highscores', JSON.stringify(scoreArray));
+        }
+    };
+    // render the highscores
+    highScores();
+};
+// Local Storage for Initials Input End
+
+//View high scores header button
+document.getElementById('view').addEventListener('click', highScores);
+
+
+//Return Button on Scoreboard Screen
+document.getElementById('back').addEventListener('click', goBack);
+
+function goBack() {
+    location.reload();
+    return false;
+};
+
+// Clear High Scores Button
+document.getElementById('clear').addEventListener('click', function () {
+    localStorage.clear();
+    alert('Scores have been cleared. Please refresh your page.');
+    highScores();
+});
